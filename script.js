@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     revealItems.forEach((item) => revealObserver.observe(item));
   } else {
-    revealItems.forEach((item) => item.classList.add("visible"));
+    revealItems.forEach((item) => item.classList.add("is-visible"));
   }
 
 
