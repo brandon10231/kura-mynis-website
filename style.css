@@ -312,41 +312,48 @@ svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-widt
 .cert-slider,
 .proof-slider {
   position: relative;
+  width: 100%;
   max-width: 880px;
   margin: 28px auto 0;
+  overflow: hidden;
 }
+
 .proof-slider {
   margin-bottom: 30px;
 }
+
 .cert-track,
 .proof-track {
   display: flex;
-  gap: 18px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  border-radius: 28px;
+  width: 100%;
+  gap: 0;
+  overflow: visible;
+  transition: transform 0.45s ease;
+  will-change: transform;
 }
-.cert-track::-webkit-scrollbar,
-.proof-track::-webkit-scrollbar { display: none; }
+
 .cert-slide,
 .proof-slide {
   flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
   margin: 0;
-  scroll-snap-align: center;
   border: 1px solid var(--border);
   border-radius: 28px;
   background: white;
   box-shadow: var(--shadow);
   overflow: hidden;
 }
+
 .cert-slide img,
 .proof-slide img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
 }
 .cert-control,
 .proof-control {
@@ -516,7 +523,7 @@ svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-widt
 }
 .package-card ul { margin: 16px 0 22px; padding: 0; list-style: none; color: var(--muted); }
 .package-card li { margin-bottom: 8px; }
-.package-card li::before { content: "✓"; color: var(--rose); font-weight: 800; margin-right: 8px; }
+.package-card li::before { content: "âœ“"; color: var(--rose); font-weight: 800; margin-right: 8px; }
 .final-cta {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto 80px;
@@ -770,142 +777,4 @@ svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-widt
   font-size: 28px;
   line-height: 1;
   cursor: pointer;
-}
-/* ========================================
-   YouTube Popup - New Version
-======================================== */
-
-.youtube-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.youtube-modal.open {
-  display: flex;
-}
-
-.youtube-modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(20, 18, 28, 0.82);
-  backdrop-filter: blur(6px);
-}
-
-.youtube-modal-content {
-  position: relative;
-  z-index: 2;
-  width: min(420px, 92vw);
-  max-height: 90vh;
-  aspect-ratio: 9 / 16;
-  background: #000;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
-}
-
-.youtube-frame {
-  width: 100%;
-  height: 100%;
-}
-
-.youtube-frame iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.youtube-modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 5;
-
-  width: 42px;
-  height: 42px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-
-  background: rgba(0, 0, 0, 0.65);
-  color: #fff;
-
-  font-size: 30px;
-  line-height: 1;
-
-  cursor: pointer;
-}
-
-.youtube-modal-close:hover {
-  background: rgba(0, 0, 0, 0.85);
-}
-
-
-/* ========================================
-   Package Cards
-======================================== */
-
-.package-card img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: contain;
-  object-position: center;
-  margin-bottom: 18px;
-}
-
-.package-price {
-  display: block;
-  margin: 10px 0;
-  color: var(--deep);
-  font-size: 2rem;
-  font-weight: 800;
-}
-
-.package-actions {
-  display: grid;
-  gap: 10px;
-  margin-top: 22px;
-}
-
-.package-badge {
-  display: inline-flex;
-  margin-bottom: 14px;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: var(--gradient);
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 800;
-}
-
-.package-card.popular {
-  border-color: rgba(220, 166, 182, 0.65);
-  background: linear-gradient(
-    180deg,
-    #fff7fb 0%,
-    #ffffff 100%
-  );
-}
-
-
-/* ========================================
-   Safety fallback for reveal
-======================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-  }
 }
