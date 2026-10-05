@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       image: "assets/package-3-boxes.png",
       description: "適合初次體驗及開始日常管理",
       stripe:
-        "https://buy.stripe.com/test_cNi5kD26Z0iO7RpfRo8IU02"
+        "https://buy.stripe.com/_cNi5kD26Z0iO7RpfRo8IU02"
     },
     {
       title: "買5送1 調理療程",
