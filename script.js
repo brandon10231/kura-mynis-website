@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-          classList.add("is-visible")
+            entry.target.classList.add("is-visible");
             observer.unobserve(entry.target);
           }
         });
@@ -144,7 +144,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     revealItems.forEach((item) => revealObserver.observe(item));
   } else {
-    revealItems.forEach((item) => item.classList.add("is-visible"));
+    revealItems.forEach((item) =>
+      item.classList.add("is-visible")
+    );
   }
 
 
@@ -223,6 +225,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let index = 0;
 
     const showSlide = (newIndex) => {
+      if (!slides.length || !track) return;
+
       index = (newIndex + slides.length) % slides.length;
 
       track.style.transform =
@@ -271,6 +275,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let index = 0;
 
     const showSlide = (newIndex) => {
+      if (!slides.length || !track) return;
+
       index = (newIndex + slides.length) % slides.length;
 
       track.style.transform =
@@ -314,7 +320,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const videoButtons = document.querySelectorAll("[data-video]");
   const existingModal = document.querySelector("[data-video-modal]");
 
-  // Replace original placeholder modal
   if (existingModal) {
     existingModal.outerHTML = `
       <div class="youtube-modal" data-youtube-modal aria-hidden="true">
@@ -354,6 +359,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     const openVideo = (videoId) => {
+      if (!iframe) return;
+
       iframe.src =
         `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
 
@@ -367,7 +374,9 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.classList.remove("open");
       modal.setAttribute("aria-hidden", "true");
 
-      iframe.src = "";
+      if (iframe) {
+        iframe.src = "";
+      }
 
       document.body.style.overflow = "";
     };
